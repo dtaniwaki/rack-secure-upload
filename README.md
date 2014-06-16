@@ -29,7 +29,7 @@ In `config/application.rb`
 ```ruby
 module MyApp
   class Application < Rails::Application
-    config.middleware.use Rack::DevMark::Middleware, :fsecure
+    config.middleware.insert_before ActionDispatch::ParamsParser, Rack::SecureUpload::Middleware, :avast
   end 
 end
 ```

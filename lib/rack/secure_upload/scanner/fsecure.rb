@@ -1,5 +1,4 @@
-require 'cocaine'
-require 'rack/secure_upload/errors'
+require 'rack/secure_upload/scanner/base'
 
 module Rack
   module SecureUpload

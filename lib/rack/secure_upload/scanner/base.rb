@@ -1,3 +1,4 @@
+require 'cocaine'
 require 'rack/secure_upload/errors'
 
 module Rack

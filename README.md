@@ -36,9 +36,21 @@ end
 
 ## AntiVirus Softwares
 
+### Avast
+
+1. Get [license](http://www.avast.com/registration-free-antivirus.php)
+2. Install the package
+
+```bash
+wget -c http://files.avast.com/files/linux/avast4workstation-1.3.0-1.i586.rpm
+sudo yum localinstall avast4workstation-1.3.0-1.i586.rpm
+avast -V # Input your license
+avast-update
+```
+
 ### F-Secure
 
-1. Get [license](http://www.f-secure.com/en/web/business_global/trial)
+1. Get [license](http://www.f-secure.com/en/web/business_global/trial) (Optional)
 2. Install the package
 
 ```bash
@@ -46,6 +58,13 @@ wget http://download.f-secure.com/webclub/f-secure-linux-security-10.00.60.tar.g
 tar xvzf f-secure-linux-security-10.00.60.tar.gz
 sudo ./f-secure-linux-security-10.00.60/f-secure-linux-security-10.00.60
 ```
+
+## Test this middleware
+
+1. Download [eicar test file](http://www.f-secure.com/virus-info/eicar.com)
+2. Upload it
+
+You can try this with [sample app](https://github.com/dtaniwaki/rack-secure-upload-sample-app)
 
 ## Contributing
 

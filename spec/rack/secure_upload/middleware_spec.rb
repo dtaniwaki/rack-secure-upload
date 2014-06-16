@@ -1,33 +1,63 @@
 require "spec_helper"
 
 describe Rack::SecureUpload::Middleware do
-  let(:env) { Rack::MockRequest.env_for('/') }
+  let(:env) { Rack::MockRequest.env_for('/', method: :post, params: {foo: file}) }
   let(:file) { Rack::Multipart::UploadedFile.new(__FILE__) }
   let(:scanner) { double setup: true, scan: true }
-  subject { Rack::SecureUpload::Middleware.new(->env { ":)" }, scanner) }
+  let(:options) { {} }
+  subject { Rack::SecureUpload::Middleware.new(->env { ":)" }, scanner, options) }
 
-  context "with uploaded file" do
-    let(:env) { Rack::MockRequest.env_for('/', method: :post, params: {foo: file}) }
+  it "scans" do
+    expect(scanner).to receive(:scan).once.and_return(true)
+    expect(subject.call(env)).to eq(":)")
+  end
+  it "returns 406" do
+    expect(scanner).to receive(:scan).and_return(false)
+    expect(subject.call(env)).to match_array([406, hash_including, match_array([//])])
+  end
 
-    it "scans" do
-      expect(scanner).to receive(:scan)
-      subject.call(env)
+  context "with multiple uploaded files" do
+    let(:env) { Rack::MockRequest.env_for('/', method: :post, params: {foo: file, bar: file, zoo: file}) }
+
+    it "scans multiple times" do
+      expect(scanner).to receive(:scan).exactly(3).times
+      expect(subject.call(env)).to eq(":)")
     end
+  end
+  context "without uplaod file" do
+    let(:env) { Rack::MockRequest.env_for('/') }
 
-    context "with multiple uploaded files" do
-      let(:env) { Rack::MockRequest.env_for('/', method: :post, params: {foo: file, bar: file, zoo: file}) }
+    it "does not scan" do
+      expect(scanner).not_to receive(:scan)
+      expect(subject.call(env)).to eq(":)")
+    end
+  end
+  context "fallback option" do
+    context "fallback is a proc" do
+      let(:fallback) { proc {} }
+      let(:options) { {fallback: fallback} }
 
-      it "scans" do
-        expect(scanner).to receive(:scan).exactly(3).times
+      it "calls fallback" do
+        expect(fallback).to receive(:call)
+        allow(scanner).to receive(:scan).and_return(false)
         subject.call(env)
       end
     end
-  end
+    context "fallback is raise" do
+      let(:options) { {fallback: :raise} }
 
-  context "without uplaod file" do
-    it "does not scan" do
-      expect(scanner).not_to receive(:scan)
-      subject.call(env)
+      it "raises an exception" do
+        allow(scanner).to receive(:scan).and_return(false)
+        expect { subject.call(env) }.to raise_error(Rack::SecureUpload::InsecureFileError)
+      end
+    end
+    context "fallback is other value" do
+      let(:options) { {fallback: 'foo'} }
+
+      it "returns 406" do
+        allow(scanner).to receive(:scan).and_return(false)
+        expect(subject.call(env)).to match_array([406, hash_including, match_array([//])])
+      end
     end
   end
 end

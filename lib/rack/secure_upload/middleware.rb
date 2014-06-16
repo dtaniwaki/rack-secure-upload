@@ -7,8 +7,9 @@ module Rack
     class Middleware
       include Utility
 
-      def initialize(app, scanners)
+      def initialize(app, scanners, options = {})
         @app = app
+        @options = options
         @scanners = [scanners].flatten.map { |scanner| scanner.is_a?(Symbol) ? Rack::SecureUpload::Scanner.const_get(camelize(scanner.to_s)).new : scanner }
         @scanners.each do |scanner|
           scanner.setup
@@ -19,9 +20,20 @@ module Rack
         params = Rack::Multipart.parse_multipart(env)
 
         if params && !params.empty?
-          traverse(params) do |value|
-            next unless [Tempfile, File].any?{ |klass| value.is_a?(klass) }
-            scan value.path
+          begin
+            traverse(params) do |value|
+              next unless [Tempfile, File].any?{ |klass| value.is_a?(klass) }
+              scan value.path
+            end
+          rescue InsecureFileError => e
+            fallback = @options[:fallback]
+            if fallback.respond_to?(:call)
+              return fallback.call(env, params, e)
+            elsif fallback.to_s == 'raise'
+              raise
+            else
+              return [406, {'content-type' => 'text/plain; charset=UTF-8'}, ['Insecure File(s) are found!']]
+            end
           end
         end
 

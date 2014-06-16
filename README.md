@@ -34,6 +34,23 @@ module MyApp
 end
 ```
 
+## Options
+
+You can add some options like below.
+
+```ruby
+use Rack::SecureUpload::Middleware, :fsecure, {foo: :bar}
+```
+
+### fallback
+
+- `proc { |env, params, exception| }`
+  - use return value of proc
+- `:raise`
+  - raise `Rack::SecureUpload::InsecureFileError` |
+- else
+  - return `406`
+
 ## AntiVirus Softwares
 
 ### Avast

@@ -17,7 +17,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
 
   gem.add_dependency 'logger', '>= 1.2'
-  gem.add_dependency "rack", ">= 1.1"
+  gem.add_dependency "rack", ">= 1.3"
   gem.add_dependency "cocaine"
 
   gem.add_development_dependency "rake"

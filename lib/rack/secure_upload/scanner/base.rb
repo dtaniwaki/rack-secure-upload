@@ -12,6 +12,9 @@ module Rack
           @options = default_options.merge(options)
         end
 
+        def setup
+        end
+
         def scan(path)
           # Scan the file here
         end

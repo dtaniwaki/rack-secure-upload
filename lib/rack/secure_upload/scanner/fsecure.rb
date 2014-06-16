@@ -4,6 +4,10 @@ module Rack
   module SecureUpload
     module Scanner
       class Fsecure < Base
+        def setup
+          raise SetupError, "#{options[:bin_path]} is not found." unless ::File.exists?(options[:bin_path])
+        end
+
         def scan(path)
           now_umask = ::File.umask(0)
 

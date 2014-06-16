@@ -10,10 +10,14 @@ module Rack
       def initialize(app, scanners)
         @app = app
         @scanners = [scanners].flatten.map { |scanner| scanner.is_a?(Symbol) ? Rack::SecureUpload::Scanner.const_get(camelize(scanner.to_s)).new : scanner }
+        @scanners.each do |scanner|
+          scanner.setup
+        end
       end
 
       def call(env)
         params = Rack::Multipart.parse_multipart(env)
+
         if params && !params.empty?
           traverse(params) do |value|
             next unless [Tempfile, File].any?{ |klass| value.is_a?(klass) }

@@ -3,7 +3,7 @@ require "spec_helper"
 describe Rack::SecureUpload::Middleware do
   let(:env) { Rack::MockRequest.env_for('/') }
   let(:file) { Rack::Multipart::UploadedFile.new(__FILE__) }
-  let(:scanner) { double scan: true }
+  let(:scanner) { double setup: true, scan: true }
   subject { Rack::SecureUpload::Middleware.new(->env { ":)" }, scanner) }
 
   context "with uploaded file" do

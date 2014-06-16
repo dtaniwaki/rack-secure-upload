@@ -37,4 +37,10 @@ describe Rack::SecureUpload::Utility do
       end
     end
   end
+
+  describe "#camelize" do
+    it "camelizes" do
+      expect(subject.camelize("test_test_test")).to eq("TestTestTest")
+    end
+  end
 end

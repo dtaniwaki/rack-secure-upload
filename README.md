@@ -44,7 +44,7 @@ use Rack::SecureUpload::Middleware, :fsecure, {foo: :bar}
 
 ### fallback
 
-- `proc { |env, params, exception| }`
+- `proc { |env, params, path| }`
   - use return value of proc
 - `:raise`
   - raise `Rack::SecureUpload::InsecureFileError` |

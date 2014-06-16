@@ -38,9 +38,9 @@ describe Rack::SecureUpload::Middleware do
       let(:options) { {fallback: fallback} }
 
       it "calls fallback" do
-        expect(fallback).to receive(:call)
+        expect(fallback).to receive(:call).and_return('yay')
         allow(scanner).to receive(:scan).and_return(false)
-        subject.call(env)
+        expect(subject.call(env)).to eq('yay')
       end
     end
     context "fallback is raise" do

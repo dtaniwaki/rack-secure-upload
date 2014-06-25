@@ -1,6 +1,6 @@
 # rack-secure-upload
 
-[![Gem Version](https://badge.fury.io/rb/rack-secure-upload.svg)](http://badge.fury.io/rb/rack-secure-upload) [![Build Status](https://travis-ci.org/dtaniwaki/rack-secure-upload.svg?branch=master)](https://travis-ci.org/dtaniwaki/rack-secure-upload) [![Coverage Status](https://coveralls.io/repos/dtaniwaki/rack-secure-upload/badge.png)](https://coveralls.io/r/dtaniwaki/rack-secure-upload)
+[![Gem Version](https://badge.fury.io/rb/rack-secure-upload.svg)](http://badge.fury.io/rb/rack-secure-upload) [![Build Status](https://travis-ci.org/dtaniwaki/rack-secure-upload.svg)](https://travis-ci.org/dtaniwaki/rack-secure-upload) [![Coverage Status](https://coveralls.io/repos/dtaniwaki/rack-secure-upload/badge.png)](https://coveralls.io/r/dtaniwaki/rack-secure-upload)
 
 Upload files securely
 

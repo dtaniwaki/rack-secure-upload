@@ -1,6 +1,10 @@
 # rack-secure-upload
 
-[![Gem Version](https://badge.fury.io/rb/rack-secure-upload.svg)](http://badge.fury.io/rb/rack-secure-upload) [![Build Status](https://travis-ci.org/dtaniwaki/rack-secure-upload.svg)](https://travis-ci.org/dtaniwaki/rack-secure-upload) [![Coverage Status](https://coveralls.io/repos/dtaniwaki/rack-secure-upload/badge.png)](https://coveralls.io/r/dtaniwaki/rack-secure-upload)
+[![Gem Version][gem-image]][gem-link]
+[![Dependency Status][deps-image]][deps-link]
+[![Build Status][build-image]][build-link]
+[![Coverage Status][cov-image]][cov-link]
+[![Code Climate][gpa-image]][gpa-link]
 
 Upload files securely
 
@@ -94,3 +98,17 @@ You can try this with [sample app](https://github.com/dtaniwaki/rack-secure-uplo
 ## Copyright
 
 Copyright (c) 2014 Daisuke Taniwaki. See [LICENSE](LICENSE) for details.
+
+
+
+[gem-image]:   https://badge.fury.io/rb/rack-secure-upload.svg
+[gem-link]:    http://badge.fury.io/rb/rack-secure-upload
+[build-image]: https://secure.travis-ci.org/dtaniwaki/rack-secure-upload.png
+[build-link]:  http://travis-ci.org/dtaniwaki/rack-secure-upload
+[deps-image]:  https://gemnasium.com/dtaniwaki/rack-secure-upload.svg
+[deps-link]:   https://gemnasium.com/dtaniwaki/rack-secure-upload
+[cov-image]:   https://coveralls.io/repos/dtaniwaki/rack-secure-upload/badge.png
+[cov-link]:    https://coveralls.io/r/dtaniwaki/rack-secure-upload
+[gpa-image]:   https://codeclimate.com/github/dtaniwaki/rack-secure-upload.png
+[gpa-link]:    https://codeclimate.com/github/dtaniwaki/rack-secure-upload
+

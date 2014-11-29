@@ -10,7 +10,7 @@ env:
   - RACK_VERSION=1.3.0
   - RACK_VERSION=1.4.0
   - RACK_VERSION=1.5.0
-  - RACK_VERSION=1.6.0.beta
+  - RACK_VERSION=1.6.0.beta2
 
 script: "bundle exec rake spec"
 

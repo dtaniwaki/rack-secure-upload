@@ -18,7 +18,7 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency 'logger', '>= 1.2'
   gem.add_dependency "rack", ">= 1.3"
-  gem.add_dependency "cocaine"
+  gem.add_dependency "terrapin"
 
   gem.add_development_dependency "rake"
   gem.add_development_dependency "rspec", ">= 3.0"

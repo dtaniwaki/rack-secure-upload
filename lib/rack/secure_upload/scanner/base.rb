@@ -1,4 +1,4 @@
-require 'cocaine'
+require 'terrapin'
 require 'rack/secure_upload/errors'
 
 module Rack

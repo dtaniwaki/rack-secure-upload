@@ -16,6 +16,8 @@ Gem::Specification.new do |gem|
   gem.executables = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   gem.require_paths = ['lib']
 
+  gem.required_ruby_version = ['>= 1.9', '< 2.6']
+
   gem.add_dependency 'logger', '>= 1.2'
   gem.add_dependency "rack", ">= 1.3"
   gem.add_dependency "terrapin"

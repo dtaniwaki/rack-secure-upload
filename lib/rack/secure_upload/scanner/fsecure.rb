@@ -35,7 +35,7 @@ module Rack
         end
 
         def command
-          Cocaine::CommandLine.new(options[:bin_path], "--auto --virus-action1=remove :path", :expected_outcodes => [0, 1])
+          Terrapin::CommandLine.new(options[:bin_path], "--auto --virus-action1=remove :path", :expected_outcodes => [0, 1])
         end
 
         def default_options

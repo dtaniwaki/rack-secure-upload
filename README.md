@@ -31,6 +31,14 @@ run MyApp
 In `config/application.rb`
 
 ```ruby
+# rails 5.x
+module MyApp
+  class Application < Rails::Application
+    config.middleware.insert_after ActionDispatch::Flash, Rack::SecureUpload::Middleware, :avast
+  end
+end
+
+# other
 module MyApp
   class Application < Rails::Application
     config.middleware.insert_before ActionDispatch::ParamsParser, Rack::SecureUpload::Middleware, :avast
